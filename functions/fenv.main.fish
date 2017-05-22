@@ -22,7 +22,13 @@
 
 
 function fenv.main
-  set program $argv
+  if test $argv[1] = '-d'
+    set -x fenv_debug true
+    set program $argv[2..-1]
+  else
+    set program $argv
+  end
+
   set divider (fenv.parse.divider)
   set previous_env (bash -c 'env')
   set previous_alias (bash -c 'alias -p')
@@ -35,10 +41,17 @@ function fenv.main
     set file_contents (cat $temp_file)
     rm $temp_file
     set new_env (fenv.parse.before $file_contents)
+    set apply_env (fenv.parse.diff $previous_env $divider $new_env)
     set new_alias (fenv.parse.after $file_contents)
+    set apply_alias (fenv.parse.diff $previous_alias $divider $new_alias)
 
-    fenv.apply.env (fenv.parse.diff $previous_env $divider $new_env)
-    fenv.apply.alias (fenv.parse.diff $previous_alias $divider $new_alias)
+    if test "$fenv_debug" = "true"
+      string join \n $apply_env
+      string join \n $apply_alias
+    end
+
+    fenv.apply.env $apply_env
+    fenv.apply.alias $apply_alias
   end
 
   return $program_status

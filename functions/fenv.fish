@@ -31,7 +31,8 @@ function fenv -d "Run bash scripts and import variables modified by them"
     return $status
   else
     echo (set_color red)'error:' (set_color normal)'parameter missing'
-    echo (set_color cyan)'usage:' (set_color normal)'fenv <bash command>'
+    echo (set_color cyan)'usage:' (set_color normal)'fenv [-d] <bash command>'
+    echo "   -d: Debug - Print the variables and aliases that are created"
     return 23  # EINVAL
   end
 end
