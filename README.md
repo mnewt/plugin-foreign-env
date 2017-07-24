@@ -1,25 +1,31 @@
-<img src="https://cloud.githubusercontent.com/assets/8317250/8510172/f006f0a4-230f-11e5-98b6-5c2e3c87088f.png" align="left" width="144px" height="144px"/>
-
-#### Foreign Environment
+# Foreign Environment
 > A foreign environment interface for Fish shell
 
 [![MIT License](https://img.shields.io/badge/license-MIT-007EC7.svg?style=flat-square)](/LICENSE)
 [![Fish Shell Version](https://img.shields.io/badge/fish-v2.2.0-007EC7.svg?style=flat-square)](http://fishshell.com)
-[![Oh My Fish Framework](https://img.shields.io/badge/Oh%20My%20Fish-Framework-007EC7.svg?style=flat-square)](https://www.github.com/oh-my-fish/oh-my-fish)
-[![Travis Status](https://img.shields.io/travis/derekstavis/plugin-nvm.svg?style=flat-square)](https://travis-ci.org/derekstavis/plugin-nvm)
 
-<br/>
+# This is a fork of the original
 
-Foreign environment wraps application execution in a way that environment variables that are exported or modified get imported back into fish. This makes possible running popular bash scripts, like the excellent `nvm`.
+Some changes have been made since the original was last updated. Please see the [Change log](CHANGELOG.md)
+
+Foreign environment wraps application execution in a way that environment variables and aliases that are exported or modified get imported back into fish. This makes possible running popular bash scripts, like the excellent `nvm`.
 
 
 # Install
 
-Be sure to have [Oh My Fish][omf-link] installed, so you just need to:
+## Using [Oh My Fish][omf-link]:
 
 ```fish
-omf install foreign-env
+omf install mnewt/foreign-env
 ```
+
+## Using [Fisherman][fisherman-link]:
+
+```fish
+fisher mnewt/foreign-env
+```
+
+## No framework
 
 If you dislike shell frameworks, you can still use Foreign Environment in Fish! Clone this repo somewhere and append to your `~/.config/fish/config.fish`:
 
@@ -54,16 +60,24 @@ When commands aren't double quoted, you need to escape semicolon with slash `\;`
 fenv "source ~/.nvm/nvm.sh; nvm --help"
 ```
 
+# Command line options
 
-# Caveats
+```fish
+usage: fenv [-dht] <bash command>
+   -d: Debug - Print the variables and aliases that are created
+   -h: Help - Print this help message
+   -t: Test - Print the variables and aliases that would be created, but make no changes
+```
 
-* Currently we only handle environment variables that are added or modified. If a variable is unset (removed from environment) it will not be removed from fish.
+# To Do
+
+There are some more features I would like to add in the [TODO](TODO.md) file.
 
 # License
 
-[MIT][mit] © [Derek Willian Stavis][author]
-
+[MIT][mit] © Original author [Derek Willian Stavis][author]
 
 [mit]:            http://opensource.org/licenses/MIT
 [author]:         http://github.com/derekstavis
 [omf-link]:       https://www.github.com/oh-my-fish/oh-my-fish
+[fisherman-link]: https://github.com/fisherman/fisherman

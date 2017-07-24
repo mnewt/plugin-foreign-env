@@ -1,0 +1,6 @@
+- [ ] Support un-setting variables
+- [ ] Add option to make `abbr`s instead of `alias`es
+- [ ] Replace common bash syntax with the equivalent fish syntax
+  - [ ] `||` -> `; or`
+  - [ ] `&&` -> `; and`
+- [ ] Add function parsing? -- just read in the string for each function and create a fish wrapper that calls `bash -c "$function_body"`

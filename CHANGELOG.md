@@ -1,0 +1,5 @@
+- [x] Fix the parsing of interactive commands by handing control to bash and using an intermediary file to hand the output from bash to fish
+- [x] Add `-d` debug option to print variables that are created
+- [x] Add parsing of aliases
+- [x] Refactor to make it less verbose. Collapse fenv.fish and fenv.main.fish. This is helpful when we start adding additional options.
+- [x] Add `--test` option
