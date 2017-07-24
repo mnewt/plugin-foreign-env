@@ -74,6 +74,6 @@ function fenv -d "Run bash scripts and import variables modified by them"
   else
     echo (set_color red)'error:' (set_color normal)'parameter missing'
     fenv.help
-    return 23  # EINVAL
+    return 22  # EINVAL
   end
 end
