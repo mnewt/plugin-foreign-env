@@ -20,24 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-function fenv.parse.diff
-  set -l fenv_parse_diff_ignore PWD SHLVL _
-  set -l before (fenv.parse.before $argv)
-  set -l after (fenv.parse.after $argv)
 
-  for environment in $after
-    if not contains -- "$environment" $before
-      set -l key (fenv.parse.key $environment)
-      if not string match -qr "$key" $fenv_parse_diff_ignore
-        echo $environment
-      end
-    end
-  end
-
-  for environment in $before
-    set -l key (string replace -r "=.*" "" $environment)
-    if not string match -qr "^$key=" $after
-      echo unset $key
-    end
-  end
+function fenv.parse.key
+  string replace -r "=.*" "" $argv
 end

@@ -1,4 +1,4 @@
-#!/usr/bin/env fish
+#!/usr/local/bin/fish
 
 for f in ./functions/*
   source $f
@@ -43,6 +43,10 @@ testing "Debug: variable" \
         fenv -d "export thing=$random_number"
 
 testing "Export a variable" "$random_number" echo $thing
+
+set new_random_number (random)
+fenv -d "export thing=$random_number"
+testing "Modify a variable" "$random_number" echo $thing
 
 testing "Debug: alias" \
         "alias hello='echo Hello'" \
