@@ -8,6 +8,13 @@
 
 Some changes have been made since the original was last updated. Please see the [Change log](CHANGELOG.md)
 
+Highlights of the changes compared to the original:
+- Works with interactive commands
+- Support for aliases
+- Support un-setting variables
+- Added `-v` option (verbose) in addition to `-d`
+- Added `--test` option
+
 Foreign environment wraps application execution in a way that environment variables and aliases that are exported or modified get imported back into fish. This makes possible running popular bash scripts, like the excellent `nvm`.
 
 
@@ -64,9 +71,11 @@ fenv "source ~/.nvm/nvm.sh; nvm --help"
 
 ```fish
 usage: fenv [-htv] <bash command>
-   -h: Help    - Print this help message
-   -t: Test    - Print the variables and aliases that would be created, but make no changes
-   -v: Verbose - Print the variables and aliases that are created (-d also works)
+   -h, --help:    Help    - Print this help message
+   -t, --test:    Test    - Print the variables and aliases that would be
+                            created, but make no changes
+   -v, --verbose: Verbose - Print the variables and aliases that are created
+                            (-d also works)
 ```
 
 # To Do
