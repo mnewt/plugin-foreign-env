@@ -32,7 +32,7 @@ function fenv.parse.diff
   end
 
   for environment in $before
-    set -l $key (string replace -r "=.*" "" $environment)
+    set -l key (string replace -r "=.*" "" $environment)
     if not string match -qr "^$key=" $after
       echo unset $key
     end
