@@ -22,20 +22,20 @@
 
 function fenv -d "Run bash scripts and import variables modified by them"
   set -l program $argv
-  set -l fenv_debug "false"
+  set -l fenv_verbose "false"
   set -l fenv_test_only "false"
 
   if test (count $program) -gt 0; or test -n (echo $program | sed 's/[ \t]//g')
     for option in $program
       switch "$option"
-        case -d --debug
-          set fenv_debug true
+        case -d --debug -v --verbose
+          set fenv_verbose true
           set program $program[2..-1]
         case -h --help
           fenv.help
           return 0
         case -t --test --test-only
-          echo fenv_test_only
+          set fenv_verbose true
           set fenv_test_only true
           set program $program[2..-1]
         case \*
@@ -59,7 +59,7 @@ function fenv -d "Run bash scripts and import variables modified by them"
       set -l new_alias (fenv.parse.after $file_contents)
       set -l apply_alias (fenv.parse.diff $previous_alias $divider $new_alias)
 
-      if test $fenv_debug = true
+      if test $fenv_verbose = true
         string join \n $apply_env
         string join \n $apply_alias
       end

@@ -6,10 +6,6 @@ end
 
 set testing_verbose true
 
-function trim_newlines -d 'Remove leading and trailing newlines'
-  echo $argv | sed '/./,$!d' | sed -n '/^[[:space:]]*$/ !{x;/\n/{s/^\n//;p;s/.*//;};x;p;}; /^[[:space:]]*$/H'
-end
-
 function testing -d 'Run a unit test'
   set description $argv[1]
   set argv $argv[2..-1]
@@ -19,8 +15,9 @@ function testing -d 'Run a unit test'
   end
   set program $argv
 
-  set result (trim_newlines (eval $program))
+  set result (eval $program)
   set code $status
+
   if test $code = 0
      and begin
        test -z "$value"
@@ -37,9 +34,24 @@ function testing -d 'Run a unit test'
   end
 end
 
+
 testing "Help output" "fenv -h"
 
 set random_number (random)
-testing "Exporting a variable" "thing=$random_number" fenv -d "export thing=$random_number"
+testing "Debug: variable" \
+        "thing=$random_number" \
+        fenv -d "export thing=$random_number"
 
-testing "Creating an alias" "alias hello='echo Hello'" fenv -d "alias hello=\'echo Hello\'"
+testing "Export a variable" "$random_number" echo $thing
+
+testing "Debug: alias" \
+        "alias hello='echo Hello'" \
+        fenv -d "alias hello=\'echo Hello\'"
+
+testing "Set an alias" "Hello World!" hello World!
+
+testing "Debug: unset variable" \
+        "unset thing" \
+        fenv -d "unset thing"
+
+testing "Unset a variable" "not set -q thing"

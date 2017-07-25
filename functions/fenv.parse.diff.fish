@@ -30,4 +30,10 @@ function fenv.parse.diff
       echo $environment
     end
   end
+
+  for environment in $before
+    if not contains -- "$environment" $after
+      echo unset (string replace -r "=.*" "" $environment)
+    end
+  end
 end

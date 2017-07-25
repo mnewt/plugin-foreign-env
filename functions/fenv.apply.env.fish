@@ -25,13 +25,18 @@ function fenv.apply.env
     set variables $argv
 
     for variable in $variables
-        set key (echo $variable | sed 's/=.*//')
-        set value (echo $variable | sed 's/[^=]*=//')
+        if string match -qr '^unset ' $variable
+            set key (string replace -r '^unset ' '' $variable)
+            set -e $key
+        else
+            set key (echo $variable | sed 's/=.*//')
+            set value (echo $variable | sed 's/[^=]*=//')
 
-        if test "$key" = 'PATH'
-          set value (echo $value | tr ':' '\n')
+            if test "$key" = 'PATH'
+              set value (echo $value | tr ':' '\n')
+            end
+
+            set -g -x $key $value
         end
-
-        set -g -x $key $value
     end
 end

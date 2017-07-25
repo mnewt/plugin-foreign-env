@@ -3,3 +3,5 @@
 - [x] Add parsing of aliases
 - [x] Refactor to make it less verbose. Collapse fenv.fish and fenv.main.fish. This is helpful when we start adding additional options.
 - [x] Add `--test` option
+- [x] Support un-setting variables
+- [x] Add `-v` option (verbose) in addition to `-d`

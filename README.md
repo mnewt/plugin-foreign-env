@@ -63,10 +63,10 @@ fenv "source ~/.nvm/nvm.sh; nvm --help"
 # Command line options
 
 ```fish
-usage: fenv [-dht] <bash command>
-   -d: Debug - Print the variables and aliases that are created
-   -h: Help - Print this help message
-   -t: Test - Print the variables and aliases that would be created, but make no changes
+usage: fenv [-htv] <bash command>
+   -h: Help    - Print this help message
+   -t: Test    - Print the variables and aliases that would be created, but make no changes
+   -v: Verbose - Print the variables and aliases that are created (-d also works)
 ```
 
 # To Do

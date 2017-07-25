@@ -22,8 +22,8 @@
 
 
 function fenv.help
-  echo (set_color cyan)'usage:' (set_color normal)'fenv [-dht] <bash command>'
-  echo "   -d: Debug - Print the variables and aliases that are created"
-  echo "   -h: Help - Print this help message"
-  echo "   -t: Test - Print the variables and aliases that would be created, but make no changes"
+  echo (set_color cyan)'usage:' (set_color normal)'fenv [-htv] <bash command>'
+  echo "   -h: Help    - Print this help message"
+  echo "   -t: Test    - Print the variables and aliases that would be created, but make no changes"
+  echo "   -v: Verbose - Print the variables and aliases that are created (-d also works)"
 end

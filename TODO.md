@@ -1,4 +1,3 @@
-- [ ] Support un-setting variables
 - [ ] Add option to make `abbr`s instead of `alias`es
 - [ ] Replace common bash syntax with the equivalent fish syntax
   - [ ] `||` -> `; or`
