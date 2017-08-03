@@ -1,3 +1,7 @@
+- [ ] `-t` outputs fish syntax instead of bash syntax, making it possible to save the output to a file
+- [ ] Ditch `env` for `declare`
+  - [ ] Support converting bash arrays to fish arrays
+  - [ ] Add support for non-exported variables
 - [ ] Add option to make `abbr`s instead of `alias`es
 - [ ] Replace common bash syntax with the equivalent fish syntax
   - [ ] `||` -> `; or`
